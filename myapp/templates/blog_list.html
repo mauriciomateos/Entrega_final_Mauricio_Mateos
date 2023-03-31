@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - Blog de ejemplo{% endblock %}
+
+{% block content %}
+<h1>Blog</h1>
+{% if blog_entries %}
+    <ul>
+        {% for entry in blog_entries %}
+            <li>
+                <a href="{% url 'blog_detail' entry.id %}">{{ entry.title }}</a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-info" href="{% url 'blog_edit' entry.id %}">Editar</a>
+                <form class="d-inline" method="POST" action="{% url 'blog_delete' entry.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-info" type="submit">Borrar</button>
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay entradas en el blog aún.</p>
+{% endif %}
+{% endblock %}

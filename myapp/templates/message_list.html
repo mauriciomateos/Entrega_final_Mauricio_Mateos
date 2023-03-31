@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Bandeja de Entrada{% endblock %}
+
+{% block content %}
+<h1>Mensajes</h1>
+{% if objs %}
+    <ul>
+        {% for obj in objs %}
+            <li>
+                {{ obj.content }}
+                    <form class="d-inline" method="POST" action="{% url 'message_delete' obj.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-info" type="submit">Borrar</button>
+                </form>
+                           </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay Mensajes.</p>
+{% endif %}
+{% endblock %}

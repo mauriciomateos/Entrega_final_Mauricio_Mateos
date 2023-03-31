@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Edicion de Blog {% endblock %}
+
+{% block content %}
+<h1>Editar Blog</h1>
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Actualizar</button>
+  </form>
+{% endblock %}

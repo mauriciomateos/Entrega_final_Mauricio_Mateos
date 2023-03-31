@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Páginas - Blog de ejemplo{% endblock %}
+
+{% block content %}
+<h1>Páginas</h1>
+{% if pages %}
+    <ul>
+        {% for page in pages %}
+            <li><a href="{% url 'page_detail' page.id %}">{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay páginas aún.</p>
+{% endif %}
+{% endblock %}
+``
